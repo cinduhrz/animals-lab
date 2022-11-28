@@ -1,46 +1,12 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-require('dotenv').config() // load env variables
+require('dotenv').config() // load env variables (need for PORT)
 const PORT = process.env.PORT || 3500
 const express = require('express') // import express
 const morgan = require('morgan') // import logger
 const methodOverride = require('method-override') // import method-override
-const mongoose = require('mongoose') // import mongoose
-
-
-/////////////////////////////////////////////
-// Database Connection
-/////////////////////////////////////////////
-const DATABASE_URL = process.env.DATABASE_URL
-// const CONFIG = {}
-
-// Establish Connection
-mongoose.connect(DATABASE_URL)
-
-// Events for when connection opens/disconnects/errors
-mongoose.connection
-.on("open", () => console.log("Connected to Mongoose"))
-.on("close", () => console.log("Disconnected from Mongoose"))
-.on("error", (error) => console.log(error))
-
-
-/////////////////////////////////////////////
-// Our Models
-/////////////////////////////////////////////
-// pull mongoose.Schema and mongoose.model from mongoose via destructuring
-const {Schema, model} = mongoose
-
-// make animal Schema
-const animalSchema = new Schema({
-    species: String,
-    extinct: Boolean,
-    location: String,
-    lifeExpectancy: Number
-})
-
-// make animal model
-const Animal = model("Animal", animalSchema)
+const mongoose = require('./models/connection')
 
 
 /////////////////////////////////////////////
