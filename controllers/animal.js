@@ -13,19 +13,47 @@ const router = express.Router()
 
 
 /////////////////////////////////////////////
-// Actual Routes
+// Actual Routes (INDUCES)
 /////////////////////////////////////////////
 router.get('/', (req, res) => {
     res.redirect('/animals')
 })
 
-router.get('/animals', (req, res) => {
-    Animal.find({}, (err, animals) => {
-        // res.json(animals)
-        res.render('../views/animals/index.ejs', { animals })
-    })
+// router.get('/animals', (req, res) => {
+//     Animal.find({}, (err, animals) => {
+//         // res.json(animals)
+//         res.render('animals/index.ejs', { animals })
+//     })
+// })
+
+// router.get('/animals', (req, res) => {
+//     Animal.find({})
+//     .then((animals) => {
+//         res.render('animals/index.ejs', {animals})
+//     })
+//     .catch(err => console.log(err))
+// })
+
+// Index route
+router.get('/animals', async (req, res) => {
+    const animals = await Animal.find({})
+    res.render('animals/index.ejs', { animals })
 })
 
+// New Route
+// Delete Route
+// Update Route
+// Create Route
+// Edit Route
+
+// Show Route
+router.get('/animals/:id', async (req, res) => {
+    // test route
+    // res.send(req.params.id)
+
+    const animal = await Animal.findById(req.params.id)
+    res.render('animals/show.ejs', { animal })
+})
 
 /////////////////////////////////////////////
 // Export Router

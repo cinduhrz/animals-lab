@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/header.ejs') %>
+    
+    <main>
+        <article>
+            <h3>
+                <%= animal.species %>
+            </h3>
+            <p>
+                This species is <%= animal.extinct ? "extinct." : "not extinct. Hooray!" %>
+
+                <br>
+
+                Location: <%= animal.location %>
+
+                <br>
+
+                Life Expectancy: <%= animal.lifeExpectancy %> years
+            </p>
+        </article>
+
+        <a href="/animals"><button>Back</button></a>
+
+    </main>
+
+</body>
+</html>
