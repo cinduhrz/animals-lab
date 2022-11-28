@@ -5,7 +5,15 @@
     <%- include('../partials/header.ejs') %>
     
     <main>
-        
+        <% for (animal of animals) { %>
+            <article>
+                <a href="/animals/<%= animal._id %>">
+                    <h3>
+                        <%= animal.species %>
+                    </h3>
+                </a>
+            </article>
+        <% } %>
     </main>
 
 </body>
