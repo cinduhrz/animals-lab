@@ -2,6 +2,7 @@
 // Import Our Dependencies
 /////////////////////////////////////////////
 const express = require('express') // bring this in so we can make our router obj
+const { rawListeners } = require('../models/animal')
 const Animal = require('../models/animal') // import animal model for routes
 const mongoose = require('../models/connection') // connect to db
 
@@ -56,6 +57,18 @@ router.delete('/animals/:id', (req, res) => {
 })
 
 // Update Route
+router.put('/animals/:id', (req, res) => {
+    // add conditional logic for converting check box to boolean for extinct
+    req.body.extinct = (req.body.extinct? true : false)
+
+    // syntax: (id, info we are updating original with, {new: true}, () => {})
+    Animal.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedAnimal) => {
+        // function alr updates animal, now just redirect user back
+        res.redirect(`/animals/${req.params.id}`)
+    })
+
+})
+
 // Create Route
 router.post('/animals', (req, res) => {
     // test route
