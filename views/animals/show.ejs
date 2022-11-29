@@ -22,11 +22,15 @@
             </p>
         </article>
 
-        <a href="/animals"><button>Back</button></a>
+        <form action="/animals/<%= animal._id %>/edit">
+        <input type="submit" value="edit">
+        </form>
 
         <form action="/animals/<%= animal._id %>?_method=DELETE" method="POST">
             <input type="submit" value="delete">
         </form>
+
+        <a href="/animals"><button>Back</button></a>
 
     </main>
 

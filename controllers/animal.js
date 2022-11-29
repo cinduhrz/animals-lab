@@ -74,6 +74,10 @@ router.post('/animals', (req, res) => {
 })
 
 // Edit Route
+router.get('/animals/:id/edit', async (req, res) => {
+    const animal = await Animal.findById(req.params.id)
+    res.render('animals/edit.ejs', { animal })
+})
 
 // Show Route
 router.get('/animals/:id', async (req, res) => {
