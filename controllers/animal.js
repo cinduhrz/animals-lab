@@ -13,11 +13,22 @@ const router = express.Router()
 
 
 /////////////////////////////////////////////
+// Router Middleware
+/////////////////////////////////////////////
+// Authorization Middleware
+// protects all routes in this router -- so if criteria is not met (user is not logged in), user will be redirected to login page :o coool
+router.use((req, res, next) => {
+    if (req.session.loggedIn) {
+        next()
+    } else {
+        res.redirect('/login')
+    }
+})
+
+
+/////////////////////////////////////////////
 // Actual Routes (INDUCES)
 /////////////////////////////////////////////
-router.get('/', (req, res) => {
-    res.render("index.ejs")
-})
 
 // router.get('/animals', (req, res) => {
 //     Animal.find({}, (err, animals) => {
@@ -36,8 +47,11 @@ router.get('/', (req, res) => {
 
 // Index route
 router.get('/animals', async (req, res) => {
-    const animals = await Animal.find({})
-    res.render('animals/index.ejs', { animals })
+    const animals = await Animal.find({username: req.session.username})
+    res.render('animals/index.ejs', { 
+        animals: animals,
+        username: req.session.username
+    })
 })
 
 // New Route
@@ -75,6 +89,9 @@ router.post('/animals', (req, res) => {
 
     // add conditional logic to handle extinct boolean
     req.body.extinct = (req.body.extinct ? true : false)
+
+    // add username to req.body to track related user
+    req.body.username = req.session.username
 
     // create new animal
     Animal.create(req.body, (err, createdAnimal) => {

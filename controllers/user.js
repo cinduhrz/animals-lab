@@ -49,11 +49,22 @@ router.post('/login', (req, res) => {
             // check if password matches
             const result = bcrypt.compareSync(password, user.password)
             if (result) {
+                // create new "username" key for req.session object and set value = to username
+                req.session.username = username
+                // do same w loggedIn key
+                req.session.loggedIn = true
                 res.redirect('/animals')
             } else {
                 res.send("Wrong password")
             }
         }
+    })
+})
+
+router.get('/logout', (req, res) => {
+    // destroy session and redirect to main page
+    req.session.destroy((err) => {
+        res.redirect('/')
     })
 })
 

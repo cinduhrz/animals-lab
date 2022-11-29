@@ -3,8 +3,11 @@
 <%- include('../partials/head.ejs') %>
 <body>
     <%- include('../partials/header.ejs') %>
-    
+
     <main>
+        <h4>welcome back, <%= username %></h4>
+
+        <a href="/logout"><button>Logout</button></a>
         <a href="/animals/new"><button>add new animal</button></a>
 
         <% for (animal of animals) { %>
