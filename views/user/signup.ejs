@@ -1,1 +1,28 @@
-<h1>you've reached the signup page :)</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <main>
+            <div>
+                <form action="/signup" method="POST">
+                    <fieldset>
+                        <h3><legend>New User</legend></h3>
+                        <label>
+                            >USERNAME: <input type="text" name="username" required>
+                        </label>
+                        <label>
+                            >PASSWORD: <input type="text" name="password" required>
+                        </label>
+                        <input type="submit" value="Create Account">
+                    </fieldset>
+                </form>
+                <div>
+                    Already have an account?
+                    <a href="/login">Login.</a>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -25,7 +25,7 @@ app.use(methodOverride("_method")) // override for PUT and DELETE requests from 
 app.use(express.urlencoded({extended:true})) // parses urlencoded request bodies (body-parser)
 app.use("/static", express.static("public")) // serves files from public statically
 app.use(AnimalRouter) // use animal router
-app.use(UserRouter) // user user router
+app.use(UserRouter) // use user router
 
 
 

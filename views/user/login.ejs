@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <main>
+            <div>
+                <form action="/login" method="POST">
+                    <fieldset>
+                        <h3><legend>User Login</legend></h3>
+                        <label>
+                            >USERNAME: <input type="text" name="username" required>
+                        </label>
+                        <label>
+                            >PASSWORD: <input type="text" name="password" required>
+                        </label>
+                        <input type="submit" value="Login">
+                    </fieldset>
+                </form>
+                <div>
+                    Don't have an account yet? 
+                    <a href="/signup">Signup.</a>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -16,7 +16,7 @@ const router = express.Router()
 // Actual Routes (INDUCES)
 /////////////////////////////////////////////
 router.get('/', (req, res) => {
-    res.redirect('/animals')
+    res.render("index.ejs")
 })
 
 // router.get('/animals', (req, res) => {
