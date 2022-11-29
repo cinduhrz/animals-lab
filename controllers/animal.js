@@ -41,7 +41,20 @@ router.get('/animals', async (req, res) => {
 })
 
 // New Route
+router.get('/animals/new', (req, res) => {
+    res.render('animals/new.ejs')
+})
+
 // Delete Route
+router.delete('/animals/:id', (req, res) => {
+    Animal.findByIdAndDelete(req.params.id, (err, deletedAnimal) => {
+        console.log(err, deletedAnimal)
+
+        // redirect user back to index
+        res.redirect('/animals')
+    })
+})
+
 // Update Route
 // Create Route
 // Edit Route
