@@ -2,7 +2,6 @@
 // Import Our Dependencies
 /////////////////////////////////////////////
 const express = require('express') // bring this in so we can make our router obj
-const { rawListeners } = require('../models/animal')
 const Animal = require('../models/animal') // import animal model for routes
 const mongoose = require('../models/connection') // connect to db
 
