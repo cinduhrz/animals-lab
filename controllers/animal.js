@@ -57,7 +57,21 @@ router.delete('/animals/:id', (req, res) => {
 
 // Update Route
 // Create Route
+router.post('/animals', (req, res) => {
+    // test route
+    // res.send(req.body)
 
+    // add conditional logic to handle extinct boolean
+    req.body.extinct = (req.body.extinct ? true : false)
+
+    // create new animal
+    Animal.create(req.body, (err, createdAnimal) => {
+        console.log(createdAnimal)
+
+        // redirect user back to index
+        res.redirect('/animals')
+    })
+})
 
 // Edit Route
 
