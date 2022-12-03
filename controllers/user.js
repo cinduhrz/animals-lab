@@ -55,7 +55,7 @@ router.post('/login', (req, res) => {
                 req.session.loggedIn = true
                 res.redirect('/animals')
             } else {
-                res.send("Wrong password")
+                res.render('user/login-wrong-password.ejs')
             }
         }
     })
