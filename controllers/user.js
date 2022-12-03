@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
     User.findOne({ username }, (err, user) => {
         // checking if user exists
         if (!user) {
-            res.send("User doesn't exist")
+            res.render('user/login-user-doesnt-exist.ejs')
         } else {
             // check if password matches
             const result = bcrypt.compareSync(password, user.password)
